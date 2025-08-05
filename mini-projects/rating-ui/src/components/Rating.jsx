@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-const Rating = () => {
+const Rating = ({
+  heading = "Rate Your Experince",
+  color = "gold",
+  feedbackMessages = ["Terrible", "Poor", "Fair", "Good", "Excelint"],
+}) => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
 
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
-  const feedbackMessage = ["Terrible", "Poor", "Fair", "Good", "Excelint"];
 
   return (
     <div className="rating-container">
@@ -16,14 +19,15 @@ const Rating = () => {
             onClick={() => setRating(star)}
             onMouseEnter={() => setHover(star)}
             onMouseLeave={() => setHover(0)}
-            className={`star ${star <= (hover || rating) ? "active" : ""}`}
             key={star}
+            className="star"
+            style={{ color: star <= (hover || rating) ? color : "#ccc" }}
           >
             {"\u2605"}
           </span>
         ))}
       </div>
-      {rating > 0 && <p className="feedback">{feedbackMessage[rating - 1]}</p>}
+      {rating > 0 && <p className="feedback">{feedbackMessages[rating - 1]}</p>}
     </div>
   );
 };
