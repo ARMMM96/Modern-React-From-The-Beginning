@@ -15,7 +15,6 @@ const Star = ({
       className="star"
       style={{ color: star <= (hover || rating) ? color : "#ccc" }}
     >
-      {" "}
       {"\u2605"}
     </span>
   );
